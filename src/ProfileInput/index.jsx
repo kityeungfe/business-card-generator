@@ -1,4 +1,6 @@
 import React from 'react';
+import html2canvas from 'html2canvas';
+
 /**
  * User profile input component
  * @description - This is the user profile input component for the business card generator
@@ -42,7 +44,14 @@ function ProfileInput({ label, value, onChange }) {
         </section>
         {/* submit button */}
         <section>
-            <button>Submit to generate</button>
+            <button
+                onClick={() => {
+                    console.log('submit')
+                    html2canvas(document.body).then(function(canvas) {
+                        document.body.appendChild(canvas);
+                    });
+                }}
+            >Submit to generate</button>
         </section>
     </React.Fragment>
   );
