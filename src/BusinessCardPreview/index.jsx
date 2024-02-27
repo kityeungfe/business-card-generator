@@ -1,8 +1,13 @@
-function BusinessCardPreview({}) {
+import Card from "../Card"
+
+function BusinessCardPreview() {
   return (
-    <div>
-      <h1>Business Card Preview</h1>
-    </div>
+    <Card title={'Business Card Preview'}>
+        {/* business card preview */}
+        <section id="capture" className="p-1">
+          <p>test</p>
+        </section>
+    </Card>
   )
 }
 

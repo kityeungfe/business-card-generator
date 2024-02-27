@@ -1,5 +1,6 @@
 import React from 'react';
-import html2canvas from 'html2canvas';
+import BusinessCardPreview from '../BusinessCardPreview';
+import Card from '../Card';
 
 /**
  * User profile input component
@@ -10,49 +11,46 @@ import html2canvas from 'html2canvas';
 function ProfileInput({ label, value, onChange }) {
   return (
     <React.Fragment>
-        {/* title */}
-        <h1>Business Card Generator</h1>
-        {/* logo upload */}
-        <section>
-            <label>{'logo'}</label>
-            <input value={value} onChange={onChange} />
-        </section>
-        {/* qr code */}
-        <section>
-            <label>{'qr code'}</label>
-            <input value={value} onChange={onChange} />
-        </section>
-        {/* user name */}
-        <section>
-            <label>{'name'}</label>
-            <input value={value} onChange={onChange} />
-        </section>
-        {/* email */}
-        <section>
-            <label>{'email'}</label>
-            <input value={value} onChange={onChange} />
-        </section>
-        {/* phone */}
-        <section>
-            <label>{'tel'}</label>
-            <input value={value} onChange={onChange} />
-        </section>
-        {/* address */}
-        <section>
-            <label>{'address'}</label>
-            <input value={value} onChange={onChange} />
-        </section>
-        {/* submit button */}
-        <section>
-            <button
-                onClick={() => {
-                    console.log('submit')
-                    html2canvas(document.body).then(function(canvas) {
-                        document.body.appendChild(canvas);
-                    });
-                }}
-            >Submit to generate</button>
-        </section>
+        <Card title={'Profile'}>
+            <div className='grid grid-cols-1 gap-4 sm:grid-cols-4'>
+                {/* user name */}
+                <section>
+                    <label>{'name'}</label>
+                    <input value={value} onChange={onChange} />
+                </section>
+                {/* email */}
+                <section>
+                    <label>{'email'}</label>
+                    <input value={value} onChange={onChange} />
+                </section>
+                {/* phone */}
+                <section>
+                    <label>{'tel'}</label>
+                    <input value={value} onChange={onChange} />
+                </section>
+                {/* address */}
+                <section>
+                    <label>{'address'}</label>
+                    <input value={value} onChange={onChange} />
+                </section>
+            </div>
+            <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'></div>
+            {/* logo upload */}
+            <section>
+                <label>{'logo'}</label>
+                <input value={value} onChange={onChange} />
+            </section>
+            {/* qr code */}
+            <section>
+                <label>{'qr code'}</label>
+                <input value={value} onChange={onChange} />
+            </section>
+            {/* style */}
+            <section>
+                <label>{'style'}</label>
+                <input value={value} onChange={onChange} />
+            </section>
+        </Card>
     </React.Fragment>
   );
 }
