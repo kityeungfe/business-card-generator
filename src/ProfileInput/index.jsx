@@ -12,42 +12,43 @@ function ProfileInput({ label, value, onChange }) {
   return (
     <React.Fragment>
         <Card title={'Profile'}>
-            <div className='grid grid-cols-1 gap-4 sm:grid-cols-4'>
+            <div className='m-1 grid grid-cols-1 sm:grid-cols-4'>
                 {/* user name */}
                 <section>
-                    <label>{'name'}</label>
+                    <label className='m-1'>{'name'}</label>
                     <input value={value} onChange={onChange} />
                 </section>
                 {/* email */}
                 <section>
-                    <label>{'email'}</label>
+                    <label className='m-1'>{'email'}</label>
                     <input value={value} onChange={onChange} />
                 </section>
                 {/* phone */}
                 <section>
-                    <label>{'tel'}</label>
+                    <label className='m-1'>{'tel'}</label>
                     <input value={value} onChange={onChange} />
                 </section>
                 {/* address */}
                 <section>
-                    <label>{'address'}</label>
+                    <label className='m-1'>{'address'}</label>
                     <input value={value} onChange={onChange} />
                 </section>
             </div>
-            <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'></div>
-            {/* logo upload */}
-            <section>
-                <label>{'logo'}</label>
-                <input value={value} onChange={onChange} />
-            </section>
-            {/* qr code */}
-            <section>
-                <label>{'qr code'}</label>
-                <input value={value} onChange={onChange} />
-            </section>
+            <div className='m-1 grid grid-cols-1 sm:grid-cols-2'>
+                {/* logo upload */}
+                <section>
+                    <label className='m-1'>{'logo'}</label>
+                    <input type='text' value={value} onChange={onChange} />
+                </section>
+                {/* qr code */}
+                <section>
+                    <label className='m-1'>{'qr code'}</label>
+                    <input value={value} onChange={onChange} />
+                </section>
+            </div>
             {/* style */}
-            <section>
-                <label>{'style'}</label>
+            <section className='m-1'>
+                <label className='m-1'>{'style'}</label>
                 <input value={value} onChange={onChange} />
             </section>
         </Card>

@@ -18,13 +18,13 @@ function App() {
 
     useEffect(() => {
         html2canvas(document.querySelector("#capture")).then(function(canvas) {
-            setPreview(canvas.toDataURL("image/png"))
+            setPreview(canvas.toDataURL())
         });
     }, [])
 
     useEffect(() => {
         html2canvas(document.querySelector("#capture")).then(function(canvas) {
-            setPreview(canvas.toDataURL("image/png"))
+            setPreview(canvas.toDataURL())
         });
     }, [name])
 
