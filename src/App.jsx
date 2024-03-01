@@ -4,16 +4,25 @@ import BusinessCardPreview from './BusinessCardPreview'
 import html2canvas from 'html2canvas';
 import Result from './Result';
 /**
- * This is the main component of the application
- * 
+ * Business card generator application
  * @author Kit.Yeung
- * @version 1.0
+ * @version 1.1
  * @since 2024-02-26
+ * @updated 2024-02-28
+ * @description This is the main component of the application
  * @returns Component of generate the business card
  */
 function App() {
     const [name, setName] = useState()
-    const [profile, setProfile] = useState({})
+    const [profile, setProfile] = useState({
+        name: 'Kit.Yeung',
+        email: 'kit.yeung@example.com',
+        telephone: '95412877',
+        address: 'USA, New York, 5th Ave, 1234',
+        logo: '',
+        qrCode: '',
+        cardStyle: 'test'
+    })
     const [preview, setPreview] = useState(null)
 
     useEffect(() => {
@@ -26,16 +35,15 @@ function App() {
         html2canvas(document.querySelector("#capture")).then(function(canvas) {
             setPreview(canvas.toDataURL())
         });
-    }, [name])
+    }, [profile])
 
     return (
         <>
             <ProfileInput 
-                label="Name" 
-                value={name} 
-                onChange={(e) => setName(e.target.value)}
+                profile={profile}
+                onChange={(profile) => setProfile(profile)}
             /> 
-            <BusinessCardPreview preview={preview}/>
+            <BusinessCardPreview profile={profile}/>
             <Result preview={preview}/>
         </>
     )

@@ -1,6 +1,6 @@
 import Card from "../Card"
 
-function BusinessCardPreview() {
+function BusinessCardPreview({ profile }) {
   return (
     <Card title={'Business Card Preview'}>
         {/* business card preview */}
