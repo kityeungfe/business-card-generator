@@ -15,25 +15,26 @@ import Result from './Result';
 function App() {
     const [name, setName] = useState()
     const [profile, setProfile] = useState({
+        company: 'Kit Studio',
         name: 'Kit.Yeung',
         email: 'kit.yeung@example.com',
         telephone: '95412877',
         address: 'USA, New York, 5th Ave, 1234',
         logo: '',
         qrCode: '',
-        cardStyle: 'test'
+        cardStyle: 'bg-gradient-to-r from-purple-500 to-pink-500'
     })
     const [preview, setPreview] = useState(null)
 
     useEffect(() => {
         html2canvas(document.querySelector("#capture")).then(function(canvas) {
-            setPreview(canvas.toDataURL())
+            setPreview(canvas.toDataURL('image/png'))
         });
     }, [])
 
     useEffect(() => {
         html2canvas(document.querySelector("#capture")).then(function(canvas) {
-            setPreview(canvas.toDataURL())
+            setPreview(canvas.toDataURL('image/png'))
         });
     }, [profile])
 

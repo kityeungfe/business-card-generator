@@ -3,6 +3,7 @@ import BusinessCardPreview from '../BusinessCardPreview';
 import Card from '../Card';
 import TextInput from '../TextInput';
 import FileInput from '../FileInput';
+import Dropdown from '../Dropdown';
 
 /**
  * User profile input component
@@ -19,14 +20,40 @@ function ProfileInput({ profile, onChange }) {
         });
     }
 
-    const onFileChange = (type) => {
-        console.log('onFileChange: ', type);
+    const onFileChange = (e, key) => {
+        let file = e.target.files[0]
+        let reader = new FileReader()
+
+        reader.onloadend = () => {
+            onChange({
+                ...profile,
+                [key]: reader.result
+            });
+        }
+
+        reader.readAsDataURL(file)
+    }
+
+    const onStyleChange = (e) => {
+        onChange({
+            ...profile,
+            cardStyle: e.target.value
+        });
     }
 
     return (
         <React.Fragment>
             <Card title={'Profile'}>
-                <div className='grid grid-cols-1 sm:grid-cols-4'>
+                <div className='grid grid-cols-1 sm:grid-cols-3'>
+                    {/* company name */}
+                    <TextInput 
+                        inputName={'company'}
+                        title={'company'} 
+                        placeholder={'Kit Studio'} 
+                        type={'text'} 
+                        value={profile.company} 
+                        onChange={onInputChange} 
+                    />
                     {/* user name */}
                     <TextInput 
                         inputName={'name'}
@@ -36,15 +63,6 @@ function ProfileInput({ profile, onChange }) {
                         value={profile.name} 
                         onChange={onInputChange} 
                     />
-                    {/* email */}
-                    <TextInput 
-                        inputName={'email'}
-                        title={'email'} 
-                        placeholder={'kit.yeung@example.com'} 
-                        type={'email'} 
-                        value={profile.email} 
-                        onChange={onInputChange} 
-                    />
                     {/* phone */}
                     <TextInput 
                         inputName={'telephone'}
@@ -52,6 +70,15 @@ function ProfileInput({ profile, onChange }) {
                         placeholder={'95412877'} 
                         type={'tel'} 
                         value={profile.telephone} 
+                        onChange={onInputChange} 
+                    />
+                    {/* email */}
+                    <TextInput 
+                        inputName={'email'}
+                        title={'email'} 
+                        placeholder={'kit.yeung@example.com'} 
+                        type={'email'} 
+                        value={profile.email} 
                         onChange={onInputChange} 
                     />
                     {/* address */}
@@ -69,28 +96,17 @@ function ProfileInput({ profile, onChange }) {
                     <FileInput 
                         inputName={'logo'}
                         title={'logo'} 
-                        placeholder={'Logo'}
-                        value={profile.logo} 
-                        onChange={() => {onFileChange('logo')}} 
+                        onChange={(e) => onFileChange(e, 'logo')} 
                     />
                     {/* qr code */}
-                    <FileInput 
+                    {/* <FileInput 
                         inputName={'qrCode'}
                         title={'qrCode'} 
-                        placeholder={'qrCode'}
-                        value={profile.qrCode} 
-                        onChange={() => {onFileChange('qr code')}}
-                    />
+                        onChange={(e) => onFileChange(e, 'qrCode')}
+                    /> */}
                 </div>
                 {/* style */}
-                <TextInput 
-                    inputName={'cardStyle'}
-                    title={'cardStyle'} 
-                    placeholder={'cardStyle'} 
-                    type={'text'} 
-                    value={profile.cardStyle} 
-                    onChange={onInputChange} 
-                />
+                <Dropdown onChange={onStyleChange} />
             </Card>
         </React.Fragment>
     );
